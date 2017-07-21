@@ -79,15 +79,15 @@ public class GameOutputController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Secret", container.getSecreValue());
         HttpEntity request = new HttpEntity(register, headers);
-        ResponseEntity<Void> input= restTemplate.postForEntity(server.buildURI(g+id+"/round/sendRegisters1"),request,Void.class);
+        ResponseEntity<Void> input= restTemplate.postForEntity(server.buildURI(g+id+"/round/sendRegisters1"),register,Void.class);
         int status= input.getStatusCodeValue();
         switch (status){
             case 204 : return "Successfully sent the registers";
-            case 422 : return "invalid registers! try sending again within the time limit";
-            default : return "Something went wrong";
+            case 422 :return "invalid registers! try sending again within the time limit";
+            default :  return "Something went wrong";
+
         }
     }
-
     /**
      * This method is used to create a new game on the server
      * @param game This contains the details of the client

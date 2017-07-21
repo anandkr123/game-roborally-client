@@ -1,8 +1,6 @@
 package game.controller;
 
-import game.entity.Game;
-import game.entity.GameViewOutputWrapper;
-import game.entity.Wrapper;
+import game.entity.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
@@ -43,11 +41,16 @@ public class GameMockServer {
      * @return status
      */
     @PostMapping("/games/{id}/round/sendRegisters1")
-    public ResponseEntity<Void> sendRegisterServer(){
+    public ResponseEntity<Void> sendRegisterServer(@RequestBody SendRegisterInputWrapper register) {
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<>(headers,HttpStatus.valueOf(204));
-    }
+        Cards reg[] = register.getRegisters();
 
+        if (reg.length == 5)
+            return new ResponseEntity<>(headers, HttpStatus.valueOf(204));
+        else
+            return new ResponseEntity<>(headers, HttpStatus.valueOf(422));
+
+    }
     /**
      * This method returns mock response for creat game service
      * @param game contains details about the game

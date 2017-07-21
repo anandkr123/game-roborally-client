@@ -1,25 +1,23 @@
 package game.entity;
 
-import java.util.List;
+
 
 /**
  * Holds the list of registers
  */
 public class SendRegisterInputWrapper {
-    private List<String> registers;
-    public  SendRegisterInputWrapper(){
-        //Empty constructor
+    private Cards[] registers;
+    public SendRegisterInputWrapper() {
     }
-    public SendRegisterInputWrapper(List<String> registers) {
+    public SendRegisterInputWrapper(Cards[] registers) {
         this.registers = registers;
     }
 
-    public List<String> getRegisters() {
+    public Cards[] getRegisters() {
         return registers;
     }
 
-    public void setRegisters(List<String> registers) {
+    public void setRegisters(Cards[] registers) {
         this.registers = registers;
     }
-
 }

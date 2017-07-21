@@ -70,7 +70,8 @@ public class GameOutputControllerTest {
                 requestTo("http://localhost:8080/games/1/round/sendRegisters1"))
                 .andExpect(method(HttpMethod.POST))
                 .andRespond(withStatus(HttpStatus.valueOf(204)));
-        String input=controller.sendRegisters("1",new SendRegisterInputWrapper(Arrays.asList("MOVE1","MOVE2","UTURN")));
+        Cards reg[]= {Cards.MOVE1,Cards.MOVE2,Cards.UTURN,Cards.SPAM,Cards.LEFT_TURN};
+        String input=controller.sendRegisters("1",new SendRegisterInputWrapper(reg));
         assertEquals("Successfully sent the registers",input);
         mockRestServiceServer.verify();
     }
